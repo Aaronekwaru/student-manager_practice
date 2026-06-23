@@ -17,8 +17,15 @@ public class StudentManager extends JFrame {
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Segoe UI", 0, 14));
-        tabbedPane.addTab("Students", new StudentPanel());
+        StudentPanel studentPanel = new StudentPanel();
+        tabbedPane.addTab("Students", studentPanel);
         tabbedPane.addTab("Courses", new CoursePanel());
+        tabbedPane.addChangeListener(e -> {
+            if (tabbedPane.getSelectedIndex() == 0) {
+                studentPanel.loadCourses();
+                studentPanel.loadTable();
+            }
+        });
 
         JLabel statusBar = new JLabel("Connected to SQLite database");
         statusBar.setFont(new Font("Segoe UI", 2, 12));

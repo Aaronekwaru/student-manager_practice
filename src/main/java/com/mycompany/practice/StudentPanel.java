@@ -89,7 +89,7 @@ public class StudentPanel extends JPanel {
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
-    private void loadCourses() {
+    public void loadCourses() {
         cmbCourse.removeAllItems();
         try (Connection conn = DatabaseManager.getConnection();
              Statement stmt = conn.createStatement();
@@ -107,7 +107,7 @@ public class StudentPanel extends JPanel {
         }
     }
 
-    private void loadTable() {
+    public void loadTable() {
         tableModel.setRowCount(0);
         String sql = "SELECT s.id, s.name, s.email, s.phone, c.course_name, s.enrollment_date " +
                      "FROM students s LEFT JOIN courses c ON s.course_id = c.id ORDER BY s.id";
