@@ -17,13 +17,22 @@ public class StudentManager extends JFrame {
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Segoe UI", 0, 14));
+
+        DashboardPanel dashboardPanel = new DashboardPanel();
         StudentPanel studentPanel = new StudentPanel();
+        CoursePanel coursePanel = new CoursePanel();
+
+        tabbedPane.addTab("Dashboard", dashboardPanel);
         tabbedPane.addTab("Students", studentPanel);
-        tabbedPane.addTab("Courses", new CoursePanel());
+        tabbedPane.addTab("Courses", coursePanel);
+
         tabbedPane.addChangeListener(e -> {
-            if (tabbedPane.getSelectedIndex() == 0) {
+            int idx = tabbedPane.getSelectedIndex();
+            if (idx == 1) {
                 studentPanel.loadCourses();
                 studentPanel.loadTable();
+            } else if (idx == 2) {
+                coursePanel.loadTable();
             }
         });
 

@@ -84,7 +84,7 @@ public class CoursePanel extends JPanel {
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
-    private void loadTable() {
+    public void loadTable() {
         tableModel.setRowCount(0);
         try (Connection conn = DatabaseManager.getConnection();
              Statement stmt = conn.createStatement();
